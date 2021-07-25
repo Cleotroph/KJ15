@@ -5,10 +5,15 @@ import javax.swing.event.*;
 
 volatile boolean gameWindowOpen = false;
 volatile String currentNewSaveName;
-volatile int resolutionMode;
+volatile int resolutionMode = 2;
 volatile boolean newGame;
 
+float screenScale;
+float screenOffset;
+boolean screenOffsetDir;
+
 void promptUser(){
+  currentSaveName = getSaveNames()[0];
   JFrame promptWindow = new JFrame("Kyle's Hell prelauncher");
   
   promptWindow.addWindowListener(new WindowAdapter() {

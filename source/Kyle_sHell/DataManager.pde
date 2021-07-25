@@ -8,3 +8,7 @@ void generateNewSave(String name){
   println("new save: " + name);
   currentSaveName = name;
 }
+
+void loadSave(String name){
+    
+}
