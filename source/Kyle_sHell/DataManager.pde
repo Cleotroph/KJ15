@@ -1,14 +1,31 @@
 String currentSaveName;
 
 String[] getSaveNames(){
-  return new String[] {"a", "b", "CCCCCCCCCC"};
+  
+  File path = new File(dataPath("saves"));
+  String[] paths = path.list();
+  for(int i = 0; i < paths.length; i++){
+    paths[i] = paths[i].substring(0, paths[i].length() - 5);
+  }
+  return paths;
+}
+
+void saveCurrentState(){
+  JSONObject save = new JSONObject();
+  for(int i = 0; i < saveState.size(); i++){
+    save.setBoolean("" + i, saveState.get(i).getState());
+  }
+  saveJSONObject(save, "data/saves/" + currentSaveName + ".json");
 }
 
 void generateNewSave(String name){
-  println("new save: " + name);
   currentSaveName = name;
+  saveCurrentState();
 }
 
-void loadSave(String name){
-    
+void loadSave(){
+  JSONObject save = loadJSONObject("data/saves/" + currentSaveName + ".json");
+  for(int i = 0; i < saveState.size(); i++){
+    saveState.get(i).loadState(save.getBoolean("" + i));
+  }
 }

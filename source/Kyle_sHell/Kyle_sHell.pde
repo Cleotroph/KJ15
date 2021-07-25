@@ -1,10 +1,12 @@
 void settings(){
   promptUser();
   while(!gameWindowOpen){}
+  initGameState();
+  initSaveState();
   if(newGame){
-    generateNewSave(currentNewSaveName);  
+    generateNewSave(currentNewSaveName);
   }else{
-    loadSave(currentSaveName); 
+    loadSave(); 
   }
   switch(resolutionMode){
     case 0:
@@ -40,7 +42,6 @@ void setup(){
       screenOffsetDir = true;
     }
   }
-  println("c");
 }
 
 void draw(){

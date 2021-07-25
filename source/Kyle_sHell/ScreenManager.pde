@@ -13,7 +13,9 @@ float screenOffset;
 boolean screenOffsetDir;
 
 void promptUser(){
-  currentSaveName = getSaveNames()[0];
+  if(getSaveNames().length > 0){
+    currentSaveName = getSaveNames()[0];
+  }
   JFrame promptWindow = new JFrame("Kyle's Hell prelauncher");
   
   promptWindow.addWindowListener(new WindowAdapter() {
@@ -31,15 +33,21 @@ void promptUser(){
   
   loadSaveButton.addActionListener(new ReferenceListener(promptWindow){
     public void actionPerformed(ActionEvent e){
-      newGame = false;
-      gameWindowOpen = true;
-      parent.setVisible(false);
-      parent.dispose();
+      if(getSaveNames().length > 0){
+        newGame = false;
+        gameWindowOpen = true;
+        parent.setVisible(false);
+        parent.dispose();
+      }
     }
   });
   
   JComboBox<String> saveNames = new JComboBox<String>(getSaveNames());
-  saveNames.setSelectedIndex(0);
+  try{
+    saveNames.setSelectedIndex(0);
+  }catch(Exception e){
+    println(e);  
+  }
   saveNames.addActionListener(new ActionListener() {
     public void actionPerformed(ActionEvent e) {
       JComboBox combo = (JComboBox)e.getSource();
