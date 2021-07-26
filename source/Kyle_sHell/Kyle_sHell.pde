@@ -2,6 +2,7 @@ void settings(){
   promptUser();
   while(!gameWindowOpen){}
   loadResources();
+  initTiles();
   initGameState();
   initSaveState();
   if(newGame){
@@ -29,6 +30,7 @@ void settings(){
       fullScreen(2);
       break;
   }
+  noSmooth();
 }
 
 void setup(){
@@ -46,7 +48,7 @@ void setup(){
 }
 
 void draw(){
-  background(0);
+  background(100);
   scale(screenScale);
   if(screenOffsetDir){
     translate(screenOffset, 0);
@@ -54,5 +56,5 @@ void draw(){
     translate(0, screenOffset);
   }
   clip(0, 0, 1920, 1080);
-  rect(10, 10, 1900, 1060);
+  gameState.renderGame();
 }
