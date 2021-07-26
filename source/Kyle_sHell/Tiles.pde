@@ -8,7 +8,6 @@ void initTiles(){
   tileRegistry.put("stone2", new TileProperty(true, 1, 25, true, false));
   tileRegistry.put("stone3", new TileProperty(true, 1, 30, true, false));
   tileRegistry.put("iron", new TileProperty(true, 1, 40, true, false));
-  tileRegistry.put("ladder", new TileProperty(false, 0, 0, false, true));
 }
 
 // Data container for static tile properties
@@ -71,4 +70,36 @@ class TileStone extends Tile {
   void onBreak() {
     println("bonk");
   }
+}
+
+class TileStoneUnbreakable extends Tile {
+  
+  TileStoneUnbreakable(float x, float y){
+    super(x, y, new TileProperty(false, 0, 0, true, false));
+  }
+  
+  void renderTile(){
+    image(textures.get("stone0"), x, y);
+  }
+  
+  void onBreak(){
+    
+  }
+  
+}
+
+class TileLadder extends Tile {
+  
+  TileLadder(float x, float y){
+    super(x, y, new TileProperty(false, 0, 0, false, true));
+  }
+  
+  void renderTile(){
+    image(textures.get("stone0"), x, y);
+  }
+  
+  void onBreak(){
+    
+  }
+  
 }

@@ -24,7 +24,8 @@ void settings(){
       screenOffsetDir = false;
       break;
     case 2:
-      fullScreen(1);
+      size(1000, 500);
+      //fullScreen(1);
       break;
     case 3:
       fullScreen(2);

@@ -7,6 +7,7 @@ void initGameState(){
 }
 
 void startRun(){
+  initGenerator();
   runState = new RunGameStateContainer();
   applySaveState();
   gameState = runState;  
@@ -18,8 +19,9 @@ abstract class GameStateContainer{
 }
 
 class RunGameStateContainer extends GameStateContainer{
-  ArrayList<Entity> entities;
-  ArrayList<ArrayList<Tile>> tiles;
+  ArrayList<Entity> entitieMap;
+  ArrayList<ArrayList<Tile>> tileMap;
+  int scroll;
   
   // Player Attributes
     int maxHealth;
@@ -27,12 +29,17 @@ class RunGameStateContainer extends GameStateContainer{
     
   
   RunGameStateContainer(){
-    entities = new ArrayList<Entity>();
-    tiles = new ArrayList<ArrayList<Tile>>();
+    entitieMap = new ArrayList<Entity>();
+    tileMap = new ArrayList<ArrayList<Tile>>();
   }
   
   void renderGame(){
-    
+    translate(scroll, 0);
+    for(ArrayList<Tile> column : tileMap){
+      for(Tile t : column){
+        t.renderTile();  
+      }
+    }
   }
   
   void tickGame(){
