@@ -1,6 +1,7 @@
 void settings(){
   promptUser();
   while(!gameWindowOpen){}
+  loadResources();
   initGameState();
   initSaveState();
   if(newGame){
