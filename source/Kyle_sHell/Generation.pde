@@ -5,7 +5,7 @@ ArrayList<Tile> convertColumnToTiles(int[] tiles, float x){
       case 0:
         break;
       case 1:
-        column.add(new TileStone(x, i * 32 - 12, 0));
+        column.add(new TileStone(x, i * 32 - 12, x/32 > 100 ? (x/32 > 200 ? (x/32 > 300 ? 3 : 2) : 1) : 0));
         break;
       case 2:
         column.add(new TileLadder(x, i * 32 - 12));

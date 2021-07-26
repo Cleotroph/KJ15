@@ -1,7 +1,8 @@
 enum KEY{
   BINDING_UP('w', UP),
   BINDING_LEFT('a', LEFT),
-  BINDING_RIGHT('d', RIGHT);
+  BINDING_RIGHT('d', RIGHT),
+  BINDING_DOWN('s', DOWN);
   
   private char s;
   private int code;

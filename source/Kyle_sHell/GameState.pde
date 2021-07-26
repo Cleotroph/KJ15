@@ -47,7 +47,7 @@ class RunGameStateContainer extends GameStateContainer{
   }
   
   void tickGame(){
-    //scroll++;
+    scroll+=5;
     for(Entity e : entityMap){
       e.onTick();  
     }
