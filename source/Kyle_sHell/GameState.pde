@@ -1,10 +1,23 @@
 GameStateContainer gameState;
+RunGameStateContainer runState;
 
 void initGameState(){
-  gameState = new GameStateContainer();
+  runState = new RunGameStateContainer();
+  gameState = new HubGameStateContainer();
 }
 
-class GameStateContainer{
+void startRun(){
+  runState = new RunGameStateContainer();
+  applySaveState();
+  gameState = runState;  
+}
+
+abstract class GameStateContainer{
+  abstract void renderGame();
+  abstract void tickGame();
+}
+
+class RunGameStateContainer extends GameStateContainer{
   ArrayList<Entity> entities;
   ArrayList<ArrayList<Tile>> tiles;
   
@@ -13,12 +26,26 @@ class GameStateContainer{
     int health;
     
   
-  GameStateContainer(){
+  RunGameStateContainer(){
     entities = new ArrayList<Entity>();
     tiles = new ArrayList<ArrayList<Tile>>();
   }
   
   void renderGame(){
+    
+  }
+  
+  void tickGame(){
+    
+  }
+}
+
+class HubGameStateContainer extends GameStateContainer{
+  void renderGame(){
+    
+  }
+  
+  void tickGame(){
     
   }
 }

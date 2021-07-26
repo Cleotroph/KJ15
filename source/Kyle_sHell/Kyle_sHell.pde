@@ -31,6 +31,7 @@ void settings(){
       break;
   }
   noSmooth();
+  sounds.get("lose0").play();
 }
 
 void setup(){
@@ -45,6 +46,7 @@ void setup(){
       screenOffsetDir = true;
     }
   }
+  startRun();
 }
 
 void draw(){
