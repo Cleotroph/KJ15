@@ -34,7 +34,7 @@ class RunGameStateContainer extends GameStateContainer{
   }
   
   void renderGame(){
-    translate(scroll, 0);
+    translate(-scroll, 0);
     for(ArrayList<Tile> column : tileMap){
       for(Tile t : column){
         t.renderTile();  
@@ -43,7 +43,7 @@ class RunGameStateContainer extends GameStateContainer{
   }
   
   void tickGame(){
-    
+    scroll++;
   }
 }
 

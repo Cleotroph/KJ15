@@ -95,7 +95,7 @@ class TileLadder extends Tile {
   }
   
   void renderTile(){
-    image(textures.get("stone0"), x, y);
+    image(textures.get("ladder"), x, y);
   }
   
   void onBreak(){

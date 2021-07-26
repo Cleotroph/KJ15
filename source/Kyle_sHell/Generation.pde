@@ -37,6 +37,7 @@ void initGenerator(){
 
 int[] generateTileValues(){
   int[]column = new int[34];
+  int lastElevation = currentElevation;
   column[0] = 3;
   column[33] = 3;
   distToEnemy--;
@@ -49,15 +50,29 @@ int[] generateTileValues(){
     distToCaveIn+=random(6, 12);
   }
   if (distToElevationChange == 0){
-    currentElevation = floor(random(0, 31));
+    currentElevation += random(Math.max(-10, -currentElevation), Math.min(10, 33 - currentElevation));
     distToElevationChange += random(6, 12);
   }
   
  for(int i = 1; i < column.length - 1; i++){
-    if (i == currentElevation){
-      column[i] = 0;    
+    if(currentElevation < lastElevation){
+      if (i >= currentElevation && i <= lastElevation){
+        column[i] = 2;  
+      }else{
+        column[i] = 1;
+      }
+    }else if(currentElevation > lastElevation){
+      if (i <= currentElevation && i >= lastElevation){
+        column[i] = 0;  
+      }else{
+        column[i] = 1;
+      }
     }else{
-      column[i] = 1;
+      if (i == currentElevation){
+        column[i] = 0;    
+      }else{
+        column[i] = 1;
+      }
     }
   }
   return column;
