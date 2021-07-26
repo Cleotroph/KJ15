@@ -103,3 +103,19 @@ class TileLadder extends Tile {
   }
   
 }
+
+class TileEmpty extends Tile {
+  
+  TileEmpty(float x, float y){
+    super(x, y, new TileProperty(false, 0, 0, false, false));
+  }
+  
+  void renderTile(){
+
+  }
+  
+  void onBreak(){
+    
+  }
+  
+}

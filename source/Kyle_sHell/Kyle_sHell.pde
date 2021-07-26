@@ -48,9 +48,6 @@ void setup(){
     }
   }
   startRun();
-  for(int i = 0; i < 500; i++){
-    genNextColumn(i * 32);
-  }
 }
 
 void draw(){
