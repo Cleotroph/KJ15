@@ -50,25 +50,25 @@ int[] generateTileValues(){
     distToCaveIn+=random(6, 12);
   }
   if (distToElevationChange == 0){
-    currentElevation += random(Math.max(-10, -currentElevation), Math.min(10, 33 - currentElevation));
+    currentElevation += random(Math.max(-10, -currentElevation), Math.min(10, 31 - currentElevation));
     distToElevationChange += random(6, 12);
   }
   
  for(int i = 1; i < column.length - 1; i++){
     if(currentElevation < lastElevation){
-      if (i >= currentElevation && i <= lastElevation){
+      if (i >= currentElevation + 1 && i <= lastElevation + 1){
         column[i] = 2;  
       }else{
         column[i] = 1;
       }
     }else if(currentElevation > lastElevation){
-      if (i <= currentElevation && i >= lastElevation){
+      if (i <= currentElevation + 1 && i >= lastElevation + 1){
         column[i] = 0;  
       }else{
         column[i] = 1;
       }
     }else{
-      if (i == currentElevation){
+      if (i == currentElevation + 1){
         column[i] = 0;    
       }else{
         column[i] = 1;

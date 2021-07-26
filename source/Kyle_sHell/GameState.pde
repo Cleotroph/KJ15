@@ -19,18 +19,19 @@ abstract class GameStateContainer{
 }
 
 class RunGameStateContainer extends GameStateContainer{
-  ArrayList<Entity> entitieMap;
+  ArrayList<Entity> entityMap;
   ArrayList<ArrayList<Tile>> tileMap;
   int scroll;
   
   // Player Attributes
-    int maxHealth;
-    int health;
+  PlayerEntity player;
     
   
   RunGameStateContainer(){
-    entitieMap = new ArrayList<Entity>();
+    entityMap = new ArrayList<Entity>();
     tileMap = new ArrayList<ArrayList<Tile>>();
+    player = new PlayerEntity();
+    entityMap.add(player);
   }
   
   void renderGame(){
@@ -40,10 +41,16 @@ class RunGameStateContainer extends GameStateContainer{
         t.renderTile();  
       }
     }
+    for(Entity e : entityMap){
+      e.renderEntity();  
+    }
   }
   
   void tickGame(){
-    scroll++;
+    //scroll++;
+    for(Entity e : entityMap){
+      e.onTick();  
+    }
   }
 }
 
