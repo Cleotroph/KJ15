@@ -40,7 +40,6 @@ abstract class ColliderEntity extends Entity{
       if(!(runState.tileMap.get(tileX).get(tileY1).propertyContainer.solid || runState.tileMap.get(tileX).get(tileY2).propertyContainer.solid)){
         x+=dx;
       }else{
-        //println((tileX - 1) * 32);
         dx = 0;
         x = (tileX - 1) * 32;
       }
@@ -61,15 +60,11 @@ abstract class ColliderEntity extends Entity{
       int tileY = floor(newY + 12 + 32) / 32;
       int tileX1 = floor(x + 1) / 32;
       int tileX2 = floor(x + 31) / 32;
-      noFill();
+      /*noFill();
       stroke(255, 255, 0);
       strokeWeight(1.5);
       rect(tileX1 * 32, tileY * 32 - 12, 32, 32);
-      rect(tileX2 * 32, tileY * 32 - 12, 32, 32);
-      stroke(0, 255, 0);
-      rect(newX, newY, 32, 32);
-      //runState.tileMap.get(tileX1).get(tileY).renderTile();
-      //runState.tileMap.get(tileX2).get(tileY).renderTile();
+      rect(tileX2 * 32, tileY * 32 - 12, 32, 32);*/
       if(!(runState.tileMap.get(tileX1).get(tileY).propertyContainer.solid || runState.tileMap.get(tileX2).get(tileY).propertyContainer.solid)){
         y+=dy;
       }else{
@@ -116,16 +111,17 @@ class EnemyRat extends GravityEntity{
   }
   void onGravityTick(){
     cooldown--;
-    if(cooldown == 0){
-      runState.entityMap.add(new ProjectileTear(x, y));
-      
-      //testfor projectile
-      for(int i = runState.projectileEntityMap.size() - 1; i >= 0; i--){
+    for(int i = runState.projectileEntityMap.size() - 1; i >= 0; i--){
         if(dist(x, y, runState.projectileEntityMap.get(i).x, runState.projectileEntityMap.get(i).y) < 32){
           runState.entityMap.remove(this);
           runState.projectileEntityMap.remove(i);
         }
       }
+    if(cooldown == 0){
+      runState.entityMap.add(new ProjectileTear(x, y));
+      
+      //testfor projectile
+      
       
       
       cooldown = 100;
@@ -154,7 +150,7 @@ abstract class Projectile extends PhysicsEntity{
 class ProjectileTear extends Projectile{
   ProjectileTear(float x, float y){
     super(x, y);
-    dx = -1;
+    dx = -2.5;
   }
   void onProjectilesTick(){
     if(dist(x, y, runState.player.x, runState.player.y) < 32){
@@ -171,12 +167,12 @@ class ProjectileTear extends Projectile{
 class ProjectileSpear extends Projectile{
   ProjectileSpear(float x, float y){
     super(x, y);
-    dx = 1;
+    dx = 2.5;
   }
   void onProjectilesTick(){
     
   }
   void renderEntity(){
-    image(textures.get("spear"), x, y);
+    image(textures.get("spear"), x - 32, y);
   }
 }

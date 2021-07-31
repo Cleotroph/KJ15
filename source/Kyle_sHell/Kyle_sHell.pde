@@ -32,7 +32,6 @@ void settings(){
       break;
   }
   noSmooth();
-  sounds.get("lose0").play();
 }
 
 void setup(){

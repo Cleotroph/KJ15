@@ -80,7 +80,7 @@ class HubGameStateContainer extends GameStateContainer{
 }
 
 class PlayerEntity extends GravityEntity{
-  int cooldown = 100;
+  int cooldown = 0;
   PlayerEntity(){
     super(128, 532, 0.3);
   }
@@ -95,16 +95,21 @@ class PlayerEntity extends GravityEntity{
       dx-=4;
     }
     if(KEY.BINDING_UP.isPressed() && (onGround || runState.tileMap.get(floor((x + 16) / 32)).get(floor((y + 12 + 16) / 32)).propertyContainer.climbable)){
-      dy = -5.5;
+      dy = -7.5;
     }
     if(x + 32 < runState.scroll){
       sounds.get("lose" + floor(random(0, 7))).play();
       runState.scrollSpeed = 0;
       runState.dead = true;
     }
+    if(x > 400 * 32){
+      sounds.get("win0").play();
+      runState.scrollSpeed = 0;
+      runState.dead = true;
+    }
     if(KEY.BINDING_DOWN.isPressed() && cooldown <= 0){
       cooldown = 100;
-      runState.projectileEntityMap.add(new ProjectileSpear(x, y));
+      runState.projectileEntityMap.add(new ProjectileSpear(x + 32, y + random(-100, 100)));
     }
   }
   

@@ -49,32 +49,32 @@ int[] generateTileValues(float x){
     distToCaveIn+=random(6, 12);
   }
   if (distToElevationChange == 0){
-    currentElevation += random(Math.max(-10, -currentElevation), Math.min(10, 31 - currentElevation));
+    currentElevation += random(Math.max(-10, -currentElevation), Math.min(10, 30 - currentElevation));
     distToElevationChange += random(6, 12);
   }
   if (distToEnemy == 0){
     if(currentElevation != lastElevation){
       distToEnemy += 3;
     }else{
-      runState.entityMap.add(new EnemyRat(x, currentElevation * 32 + 12));
+      runState.entityMap.add(new EnemyRat(x, currentElevation * 32 + 12 + 96));
       distToEnemy+=random(10, 15);
     }
   }
   for(int i = 1; i < column.length - 1; i++){
     if(currentElevation < lastElevation){
-      if (i >= currentElevation + 1 && i <= lastElevation + 1){
+      if (i >= currentElevation + 2 && i <= lastElevation + 2){
         column[i] = 2;  
       }else{
         column[i] = 1;
       }
     }else if(currentElevation > lastElevation){
-      if (i <= currentElevation + 1 && i >= lastElevation + 1){
+      if (i <= currentElevation + 2 && i >= lastElevation + 2){
         column[i] = 0;  
       }else{
         column[i] = 1;
       }
     }else{
-      if (i == currentElevation + 1){
+      if (abs(i - (currentElevation + 2)) <= 1 ){
         column[i] = 0;    
       }else{
         column[i] = 1;
