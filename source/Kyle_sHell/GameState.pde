@@ -109,7 +109,7 @@ class PlayerEntity extends GravityEntity{
     }
     if(KEY.BINDING_DOWN.isPressed() && cooldown <= 0){
       cooldown = 100;
-      runState.projectileEntityMap.add(new ProjectileSpear(x + 32, y + random(-100, 100)));
+      runState.projectileEntityMap.add(new ProjectileSpear(x + 32, y));
     }
   }
   
