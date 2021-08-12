@@ -1,4 +1,5 @@
 ArrayList<SaveStateObject> saveState;
+HashMap<String, Integer> saveStateProperties; 
 
 void initSaveState(){
   saveState = new ArrayList<SaveStateObject>();
@@ -7,6 +8,8 @@ void initSaveState(){
       println("activated");
     }
   });
+  saveStateProperties = new HashMap<String, Integer>();
+  saveStateProperties.put("gold", 0);
 }
 
 void applySaveState(){
