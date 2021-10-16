@@ -15,6 +15,9 @@ void saveCurrentState(){
   for(int i = 0; i < saveState.size(); i++){
     save.setBoolean("" + i, saveState.get(i).getState());
   }
+  for(String k : saveStateProperties.keySet()){
+    save.setInt(k, saveStateProperties.get(k));
+  }
   saveJSONObject(save, "data/saves/" + currentSaveName + ".json");
 }
 
@@ -26,6 +29,9 @@ void generateNewSave(String name){
 void loadSave(){
   JSONObject save = loadJSONObject("data/saves/" + currentSaveName + ".json");
   for(int i = 0; i < saveState.size(); i++){
-    saveState.get(i).loadState(save.getBoolean("" + i));
+    saveState.get(i).loadState(save.getBoolean("" + i, false));
+  }
+  for(String k : saveStateProperties.keySet()){
+    saveStateProperties.put(k, save.getInt(k, 0));
   }
 }
