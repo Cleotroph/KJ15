@@ -12,23 +12,23 @@ void settings(){
   }
   switch(resolutionMode){
     case 0:
-      size(1280, 720);
+      size(1280, 720, P2D);
       screenScale = 1280.0/1920.0;
       screenOffset = 0;
       screenOffsetDir = false;
       break;
     case 1:
-      size(1920, 1080);
+      size(1920, 1080, P2D);
       screenScale = 1;
       screenOffset = 0;
       screenOffsetDir = false;
       break;
     case 2:
       //size(1000, 500);
-      fullScreen(1);
+      fullScreen(P2D, 1);
       break;
     case 3:
-      fullScreen(2);
+      fullScreen(P2D, 2);
       break;
   }
   noSmooth();
